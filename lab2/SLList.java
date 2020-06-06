@@ -107,12 +107,27 @@ public class SLList {
         }
     }
 
+    /** Square the list every time you add a value. */
+    public void suareInsertList(int x){
+        IntNode p = sentinel.next;
+        while(p != null){
+            p.next = new IntNode(p.item * p.item, p.next);
+            size += 1;
+            p = p.next.next;
+        }
+        this.addLast(x);
+    }
+
     public static void main(String[] args){
         /** Creates a list from a array. */
-        int[] array = new int[]{2,4,8,16,7,7,8,9,10};
+        int[] array = new int[]{1,1,2,4,5};
         SLList L = new SLList(array);
-        L.addAdjacent();
+        L.suareInsertList(7);
+        IntNode ptr = L.sentinel.next;
 
-        System.out.println("The size of this list should be 6, which you give : " + L.size());
+        for(int i = 0; i < L.size; i++){
+            System.out.print(ptr.item + " ");
+            ptr = ptr.next;
+        }
     }
 }
